@@ -1,5 +1,10 @@
 # DebugPrint
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.flagodna/debugprint.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.flagodna/debugprint)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![minSdk](https://img.shields.io/badge/minSdk-21-green.svg)](https://developer.android.com/guide/topics/manifest/uses-sdk-element)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.x-purple.svg)](https://kotlinlang.org)
+
 A Flutter-inspired, debug-only logger for Android, written in Kotlin.
 
 `DebugPrint` gives you a familiar `debugPrint.d("hello")` API, auto-detects debug
@@ -17,12 +22,6 @@ builds, auto-tags logs with `File.fn:line`, and stays completely silent in relea
 - 🔌 **Pluggable sinks** — swap Logcat for file / Crashlytics / remote
 - 🛡️ **Never crashes** — logging errors are swallowed silently
 - 📦 **Tiny** — pure Kotlin, one small AAR
-
-## Requirements
-
-- Android `minSdk 21+`
-- Kotlin (via AGP 9+ built-in Kotlin)
-- R8 / ProGuard recommended for release builds
 
 ## Installation
 
@@ -89,22 +88,6 @@ debugPrint.d("Tag", "message")    // custom tag
 debugPrint.d { "message" }        // lazy
 ```
 
-### Manual control (optional)
-
-```kotlin
-// Force-enable logging (e.g. in a QA build)
-DebugPrint.enabled = true
-
-// Turn off auto-tagging for hot paths (faster)
-DebugPrint.autoTag = false
-
-// Change the fallback tag
-DebugPrint.defaultTag = "MyApp"
-
-// Plug in a custom output
-DebugPrint.sink = MyCustomSink()
-```
-
 ## Behavior
 
 | Build type | `DebugPrint.enabled` | Output      |
@@ -150,7 +133,3 @@ Or pass a custom tag, which also skips the stack walk:
 ```kotlin
 for (i in 1..100_000) debugPrint.d("Loop", "iteration $i")
 ```
-
-## License
-
-The Apache License, Version 2.0
